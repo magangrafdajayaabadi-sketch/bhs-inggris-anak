@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Bhs Inggris</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#2EC4B6" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Bhs Inggris" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=20260814-1" />
+</head>
+<body style="background:#F6F5F1">
+
+  <header class="band">
+    <div class="band-inner">
+      <div class="brand-lockup">
+        <img data-brand="logo" alt="" style="display:none" />
+        <div>
+          <h1><span data-brand="name">Bhs Inggris</span> &middot; Admin</h1>
+          <p>Panel white-label &amp; pengaturan game</p>
+        </div>
+      </div>
+      <div class="admin-actions">
+        <span id="mode-badge" class="star-pill" style="font-size:13px"></span>
+        <a class="btn ghost" href="index.html" target="_blank" rel="noopener" style="text-decoration:none">Lihat game &#8599;</a>
+        <button class="btn ghost" id="logout" style="display:none">Keluar</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-wrap">
+
+    <!-- ============ LOGIN ============ -->
+    <section id="login-view" class="admin-card login-box" style="display:none">
+      <div class="lock">&#128274;</div>
+      <h2>Masuk sebagai admin</h2>
+      <p class="desc">Masukkan kata sandi admin untuk membuka panel white-label.</p>
+      <form id="login-form">
+        <div class="field">
+          <input type="password" id="login-pass" placeholder="Kata sandi admin" autocomplete="current-password" />
+          <p class="note">Kata sandi bawaan: <b>admin123</b> — segera ganti di tab Keamanan.</p>
+        </div>
+        <button class="btn" type="submit" style="width:100%">Masuk</button>
+        <p class="note" id="login-err" style="color:#B3372F;margin-top:10px"></p>
+      </form>
+    </section>
+
+    <!-- ============ PANEL ============ -->
+    <section id="panel-view" style="display:none">
+
+      <div class="admin-top">
+        <h1>Pengaturan</h1>
+        <div class="admin-actions">
+          <button class="btn" id="save-all">&#128190; Simpan perubahan</button>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="branding">Branding</button>
+        <button class="tab" data-tab="konten">Konten soal</button>
+        <button class="tab" data-tab="game">Game</button>
+        <button class="tab" data-tab="keamanan">Keamanan</button>
+        <button class="tab" data-tab="data">Data</button>
+      </div>
+
+      <!-- ---- BRANDING ---- -->
+      <div class="tab-panel active" id="tab-branding">
+        <div class="admin-card">
+          <h2>Identitas aplikasi</h2>
+          <p class="desc">Ubah nama, tagline, dan logo. Perubahan langsung tampil di halaman game.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-appName">Nama aplikasi</label>
+              <input type="text" id="f-appName" />
+            </div>
+            <div class="field">
+              <label for="f-tagline">Tagline</label>
+              <input type="text" id="f-tagline" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-logo">Logo</label>
+            <input type="text" id="f-logoUrl" placeholder="https://... (URL logo) — atau unggah di bawah" />
+            <p class="note">Bisa juga unggah gambar (disimpan sebagai data di browser ini):</p>
+            <input type="file" id="f-logoFile" accept="image/*" style="margin-top:6px" />
+            <div id="logo-preview" style="margin-top:10px"></div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2>Warna tema</h2>
+          <p class="desc">Sesuaikan warna dengan brand kamu.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-primary">Warna utama (header &amp; tombol)</label>
+              <div class="color-input">
+                <input type="color" id="f-primary" />
+                <input type="text" id="f-primary-hex" style="max-width:120px" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-accent">Warna aksen (tombol aksi)</label>
+              <div class="color-input">
+                <input type="color" id="f-accent" />
+                <input type="text" id="f-accent-hex" style="max-width:120px" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2>Footer</h2>
+          <div class="field">
+            <label for="f-footer">Teks footer</label>
+            <input type="text" id="f-footer" />
+          </div>
+          <div class="switch-row">
+            <div>
+              <div class="name">Tampilkan teks tambahan footer</div>
+              <div class="sub">"&middot; Belajar sambil bermain!" setelah teks footer</div>
+            </div>
+            <label class="switch"><input type="checkbox" id="f-credit" /><span class="knob"></span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---- KONTEN ---- -->
+      <div class="tab-panel" id="tab-konten">
+        <div class="admin-card">
+          <h2>Bank soal</h2>
+          <p class="desc">
+            Setiap kartu di bawah adalah bank soal satu game. Satu baris = satu soal,
+            kolom dipisah tanda <b>=</b>. Baris kosong diabaikan; baris yang formatnya
+            salah akan dilaporkan saat menyimpan. Minimal <b>5 baris</b> per bank
+            (level Advanced menampilkan 5 pilihan jawaban).
+          </p>
+          <div class="field" style="max-width:320px">
+            <label for="bank-filter">Cari bank soal</label>
+            <input type="text" id="bank-filter" placeholder="Mis. hewan, plural, warna" />
+          </div>
+        </div>
+        <div id="content-banks"></div>
+      </div>
+
+      <!-- ---- GAME ---- -->
+      <div class="tab-panel" id="tab-game">
+        <div class="admin-card">
+          <h2>Aktifkan / nonaktifkan game</h2>
+          <p class="desc">Game yang dimatikan tidak muncul di menu anak.</p>
+          <div id="game-switches"></div>
+        </div>
+        <div class="admin-card">
+          <h2>Jumlah soal per ronde</h2>
+          <div class="field" style="max-width:220px">
+            <input type="number" id="f-perRound" min="3" max="20" />
+            <p class="note">Antara 3 sampai 20 soal.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---- KEAMANAN ---- -->
+      <div class="tab-panel" id="tab-keamanan">
+        <div class="admin-card">
+          <h2>Ganti kata sandi admin</h2>
+          <p class="desc">Kata sandi disimpan sebagai hash SHA-256 di browser ini.</p>
+          <div class="field" style="max-width:340px">
+            <label for="p-current">Kata sandi saat ini</label>
+            <input type="password" id="p-current" autocomplete="current-password" />
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="p-new">Kata sandi baru</label>
+              <input type="password" id="p-new" autocomplete="new-password" />
+            </div>
+            <div class="field">
+              <label for="p-confirm">Ulangi kata sandi</label>
+              <input type="password" id="p-confirm" autocomplete="new-password" />
+            </div>
+          </div>
+          <button class="btn" id="change-pass">Ganti kata sandi</button>
+          <p class="note" style="margin-top:12px">
+            Mode server: verifikasi sandi dilakukan di server (aman untuk produksi).
+            Mode lokal: proteksi sisi-klien saja — cukup untuk mencegah pengguna biasa,
+            tapi bukan keamanan tingkat server (lihat README).
+          </p>
+        </div>
+      </div>
+
+      <!-- ---- DATA ---- -->
+      <div class="tab-panel" id="tab-data">
+        <div class="admin-card">
+          <h2>Ekspor &amp; impor konfigurasi</h2>
+          <p class="desc" id="local-mode-note" style="display:none">
+            <b>Mode lokal:</b> pengaturan admin tersimpan di browser ini saja. Agar branding berlaku
+            permanen untuk semua pengunjung, salin konfigurasi lalu tempelkan ke file
+            <b>js/config.default.js</b> sebelum deploy — atau aktifkan mode server (lihat README).
+          </p>
+          <p class="desc">Ekspor untuk cadangan, atau impor konfigurasi dari file JSON.</p>
+          <div class="admin-actions">
+            <button class="btn" id="copy-config">&#128203; Salin sebagai config.default.js</button>
+            <button class="btn ghost" id="export-json">&#11015; Unduh JSON</button>
+            <button class="btn ghost" id="import-json">&#11014; Impor JSON</button>
+            <input type="file" id="import-file" accept="application/json" style="display:none" />
+          </div>
+        </div>
+        <div class="admin-card">
+          <h2>Reset</h2>
+          <p class="desc">Hapus papan global, atau isi kode room untuk menghapus papan bintang room tertentu.</p>
+          <div class="field" style="max-width:320px">
+            <label for="reset-room-code">Kode room</label>
+            <input type="text" id="reset-room-code" maxlength="16" placeholder="Mis. ABC123" />
+          </div>
+          <div class="admin-actions">
+            <button class="btn ghost" id="reset-board">Hapus papan bintang</button>
+            <button class="btn ghost" id="reset-room-board">Hapus papan room</button>
+            <button class="btn accent" id="reset-config">Kembalikan ke pengaturan pabrik</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <footer class="band-footer">
+    <span data-brand="footer">English Fun Starter for Kids</span> &middot; Panel Admin
+  </footer>
+
+  <script src="js/config.default.js?v=20260814-1"></script>
+  <script src="js/shared.js?v=20260814-1"></script>
+  <script src="js/admin.js?v=20260814-1"></script>
+  <script src="js/pwa.js?v=20260814-1"></script>
+</body>
+</html>
