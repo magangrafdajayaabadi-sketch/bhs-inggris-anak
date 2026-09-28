@@ -18,7 +18,7 @@ window.EFQ_DEFAULT_CONFIG = {
     primaryColor: "#2EC4B6",
     accentColor: "#FF6B6B",
     starColor: "#F5A623",
-    footerText: "English Fun Starter for Kids",
+    footerText: "English Fun Starter for Kids · by produkvip",
     showCredit: true
   },
 
